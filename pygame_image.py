@@ -10,16 +10,22 @@ def main():
     kk_img = pg.image.load("ex01/fig/3.png")
     kk_img = pg.transform.flip(kk_img, True, False)
     kk_imgs = [kk_img, pg.transform.rotozoom(kk_img, 10, 1.0)]
+    bg_imgs = pg.transform.flip(bg_img,True,False)
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
-        x = tmr%1600
-        print(tmr, x)
+        x= tmr%3200
+        if tmr % 100 <= 50:
+            num = 0
+        else:
+            num= 1
+
         screen.blit(bg_img, [-x, 0])
-        screen.blit(bg_img, [1600-x, 0])
-        screen.blit(kk_imgs[tmr%2], [300, 200])
+        screen.blit(bg_img, [-x+3200, 0])
+        screen.blit(bg_imgs,[1600-x, 0])
+        screen.blit(kk_imgs[num], [300, 200])
         pg.display.update()
         tmr += 1        
         clock.tick(100)
